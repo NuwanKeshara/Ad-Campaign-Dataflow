@@ -5,6 +5,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
 
+# setup logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -14,6 +15,7 @@ logging.basicConfig(
     ]
 )
 
+# load environment variables
 load_dotenv()
 
 DB_USER = os.getenv("DB_USER")
