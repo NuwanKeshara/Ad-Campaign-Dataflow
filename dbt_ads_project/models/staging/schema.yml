@@ -1,0 +1,68 @@
+version: 2
+
+models:
+  - name: stg_ad_logs
+    description: "Staging table for Ad Campaign Data"
+    columns:
+      - name: ad_id
+        description: "An unique ID for each ad"
+        tests:
+          - not_null
+          - unique
+
+      - name: xyz_campaign_id
+        description: "ID associated with each ad campaign of XYZ company"
+        tests:
+          - not_null
+
+      - name: fb_campaign_id
+        description: "ID associated with how Facebook tracks each campaign"
+        tests:
+          - not_null
+
+      - name: age
+        description: "Age group of the person to whom the ad is shown"
+        tests:
+          - not_null
+
+      - name: gender
+        description: "Gender of the person to whom the ad is shown"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['m', 'f']
+
+      - name: interest
+        description: "Code specifying the category of the person’s interest"
+        tests:
+          - not_null
+
+      - name: impressions
+        description: "Number of times the ad was shown"
+        tests:
+          - not_null
+          - non_negative
+
+      - name: clicks
+        description: "Number of clicks on that ad"
+        tests:
+          - not_null
+          - non_negative
+
+      - name: spent
+        description: "Amount paid by company xyz to Facebook"
+        tests:
+          - not_null
+          - non_negative
+
+      - name: total_conversion
+        description: "Total number of people who enquired about the product after seeing the ad"
+        tests:
+          - non_negative
+
+      - name: approved_conversion
+        description: "Total number of people who bought the product after seeing the ad"
+        tests:
+          - not_null
+          - non_negative

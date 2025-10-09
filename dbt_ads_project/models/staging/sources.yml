@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: staging_source
+    description: "Raw data from the destination PostgreSQL database."
+    database: postgres
+    schema: public
+    tables:
+      - name: raw_ad_logs
+        description: "Staging table for Ad Campaign Data"

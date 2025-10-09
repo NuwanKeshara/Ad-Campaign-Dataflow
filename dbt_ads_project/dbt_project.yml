@@ -7,3 +7,9 @@ target-path: "target"
 clean-targets:
   - "target"
   - "dbt_modules"
+models:
+  dbt_ads_project:
+    staging:
+      +materialized: table
+    marts:
+      +materialized: table
