@@ -7,5 +7,5 @@ SELECT
     SUM(total_conversion) AS total_conversion,
     SUM(approved_conversion) AS total_approved_conversion,
     ROUND(SUM(clicks)::NUMERIC / NULLIF(SUM(impressions),0), 4) AS ctr
-FROM {{ ref('stg_ad_logs') }}
+FROM {{ ref('daily_ad_logs_view') }}
 GROUP BY xyz_campaign_id

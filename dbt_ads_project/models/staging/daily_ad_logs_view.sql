@@ -1,6 +1,6 @@
 WITH raw AS (
     SELECT *
-    FROM {{ source('staging_source','raw_ad_logs') }} 
+    FROM {{ source('staging_source', 'stg_ad_logs') }} 
 )
 
 SELECT

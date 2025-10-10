@@ -1,10 +1,18 @@
 version: 2
 
 sources:
+  - name: dm_source
+    description: "aaggregated data from the destination PostgreSQL database."
+    database: "{{ env_var('DB_NAME', 'postgres') }}"
+    schema: "{{ env_var('DB_SCHEMA', 'public') }}"
+    tables:
+      - name: dm_ad_logs
+        description: "Data Model table for Ad Campaign Data"
+
   - name: staging_source
     description: "Raw data from the destination PostgreSQL database."
-    database: postgres
-    schema: public
+    database: "{{ env_var('DB_NAME', 'postgres') }}"
+    schema: "{{ env_var('DB_SCHEMA', 'public') }}"
     tables:
-      - name: raw_ad_logs
+      - name: stg_ad_logs
         description: "Staging table for Ad Campaign Data"

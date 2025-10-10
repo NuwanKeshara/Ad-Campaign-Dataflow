@@ -23,7 +23,7 @@ DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_HOST = os.getenv("DB_HOST", "localhost")
 DB_PORT = os.getenv("DB_PORT", "5432")
 DB_NAME = os.getenv("DB_NAME")
-TABLE_NAME = os.getenv("TABLE_NAME", "raw_ad_logs")
+TABLE_NAME = os.getenv("TABLE_NAME")
 CSV_PATH = os.getenv("CSV_PATH")
 
 

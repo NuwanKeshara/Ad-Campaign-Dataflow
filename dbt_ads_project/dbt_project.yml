@@ -11,5 +11,3 @@ models:
   dbt_ads_project:
     staging:
       +materialized: table
-    marts:
-      +materialized: table
