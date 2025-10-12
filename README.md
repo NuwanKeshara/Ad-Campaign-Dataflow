@@ -4,4 +4,4 @@ This project is designed to streamline the process of loading, cleaning, and tra
 
 Tech Stack: Python, SQL, DBT, Airflow, GCP BiqQuery
 
-![alt text](https://github.com/NuwanKeshara/IOT-Real-time-processing-with-Azure-Databricks/blob/main/Architecture.drawio.png?raw=true)
+![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/data/system.drawio.png?raw=true)
