@@ -1,6 +1,6 @@
 WITH raw AS (
     SELECT *
-    FROM {{ source('staging_source', 'stg_ad_logs') }} 
+    FROM {{ source('staging_source', 'stg_ad_logs_tbl') }} 
 )
 
 SELECT
@@ -9,7 +9,7 @@ SELECT
     fb_campaign_id,
     age,
     LOWER(gender) AS gender,
-    COALESCE(interest::text, 'NA') AS interest,
+    COALESCE(CAST(interest AS STRING), 'NA') AS interest,
     impressions,
     clicks,
     spent,
