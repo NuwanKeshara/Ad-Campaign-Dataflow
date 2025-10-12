@@ -1,4 +1,7 @@
 .venv/
-logs/
+logs/*
 .env
-config/
+config/*
+plugins/*
+keys/*
+scripts/test_biquery_connection.py

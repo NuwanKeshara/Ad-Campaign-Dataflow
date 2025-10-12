@@ -6,6 +6,6 @@ SELECT
     SUM(spent) AS total_spent,
     SUM(total_conversion) AS total_conversion,
     SUM(approved_conversion) AS total_approved_conversion,
-    ROUND(SUM(clicks)::NUMERIC / NULLIF(SUM(impressions),0), 4) AS ctr
+    ROUND(CAST(SUM(clicks) AS NUMERIC) / NULLIF(SUM(impressions), 0), 4) AS ctr
 FROM {{ ref('daily_ad_logs_view') }}
 GROUP BY xyz_campaign_id

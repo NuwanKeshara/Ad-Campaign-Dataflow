@@ -1,24 +1,21 @@
-with base as (
-
-    select
+WITH base AS (
+    SELECT
         campaign_id,
         fb_campaign_id,
         age,
         gender,
         interest,
-        sum(impressions) as total_impressions,
-        sum(clicks) as total_clicks,
-        sum(spent) as total_spent,
-        sum(total_conversion) as total_conversion,
-        sum(approved_conversion) as approved_conversion
-    from {{ source('dm_source', 'dm_ad_logs') }} 
-    group by 1,2,3,4,5
-
+        SUM(impressions) AS total_impressions,
+        SUM(clicks) AS total_clicks,
+        SUM(spent) AS total_spent,
+        SUM(total_conversion) AS total_conversion,
+        SUM(approved_conversion) AS approved_conversion
+    FROM {{ source('datamodel_source','dm_ad_logs_tbl') }} 
+    GROUP BY 1, 2, 3, 4, 5
 ),
 
-metrics as (
-
-    select
+metrics AS (
+    SELECT
         campaign_id,
         fb_campaign_id,
         age,
@@ -29,12 +26,10 @@ metrics as (
         total_spent,
         total_conversion,
         approved_conversion,
-        
-        case when total_impressions > 0 then total_clicks::float / total_impressions else 0 end as click_rate,
-        case when total_clicks > 0 then total_spent::float / total_clicks else 0 end as spent_rate,
-        case when total_impressions > 0 then total_clicks::float / total_impressions else 0 end as reach
-    from base
-
+        CASE WHEN total_impressions > 0 THEN CAST(total_clicks AS FLOAT64) / total_impressions ELSE 0 END AS click_rate,
+        CASE WHEN total_clicks > 0 THEN CAST(total_spent AS FLOAT64) / total_clicks ELSE 0 END AS spent_rate,
+        CASE WHEN total_impressions > 0 THEN CAST(total_clicks AS FLOAT64) / total_impressions ELSE 0 END AS reach
+    FROM base
 )
 
-select * from metrics
+SELECT * FROM metrics

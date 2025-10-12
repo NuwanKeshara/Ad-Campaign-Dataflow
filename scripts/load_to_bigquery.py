@@ -2,44 +2,38 @@ import os
 import sys
 import logging
 import pandas as pd
-from sqlalchemy import create_engine
 from dotenv import load_dotenv
+from google.cloud import bigquery
 
 # setup logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[
-        logging.FileHandler("logs/load_to_postgres.log"),
+        logging.FileHandler("logs/load_to_bigquery.log"),
         logging.StreamHandler(sys.stdout)
     ]
 )
 
-# load environment variables
+
+# load environment
 load_dotenv("/opt/airflow/AD-CAMPAIGN-DATAFLOW/.env")
 
-DB_USER = os.getenv("DB_USER")
-DB_PASSWORD = os.getenv("DB_PASSWORD")
-# DB_HOST = os.getenv("DB_HOST", "localhost")
-# DB_PORT = os.getenv("DB_PORT", "5432")
-DB_HOST = "postgres"
-DB_PORT = "5432"
-DB_NAME = os.getenv("DB_NAME")
-TABLE_NAME = os.getenv("TABLE_NAME")
 CSV_PATH = os.getenv("CSV_PATH")
+BQ_PROJECT = os.getenv("BQ_PROJECT")
+BQ_DATASET = os.getenv("BQ_DATASET")
+BQ_STG_TABLE = os.getenv("BQ_STG_TABLE")
 
 
-# create db connection
-def get_db_connection():
+
+# create BigQuery client
+def get_bq_client():
     try:
-        engine = create_engine(
-            f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-        )
-        conn = engine.connect()
-        logging.info("Database connection established successfully.")
-        return conn
+        client = bigquery.Client(project=BQ_PROJECT)
+        logging.info(f"BigQuery client created for project: {BQ_PROJECT}")
+        return client
     except Exception as e:
-        logging.error(f"Failed to connect to Postgres: {e}")
+        logging.error(f"Failed to create BigQuery client: {e}")
         sys.exit(1)
 
 
@@ -58,6 +52,7 @@ def load_csv_data(path: str) -> pd.DataFrame:
 def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     logging.info("Starting data cleaning process...")
 
+    # drop all empty rows
     df.dropna(how="all", inplace=True)
     df.columns = [c.strip().lower().replace(" ", "_") for c in df.columns]
 
@@ -74,13 +69,15 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
         df = df[df[col] >= 0]
 
 
-    # validate String columns
+    # lower gender column
     if "gender" in df.columns:
         df["gender"] = df["gender"].astype(str).str.strip().str.lower()
 
+    # validate age column values
     if "age" in df.columns:
         df["age"] = df["age"].astype(str).str.strip()
 
+    # fill null values with NA
     if "interest" in df.columns:
         df["interest"] = df["interest"].fillna("NA")
 
@@ -88,23 +85,25 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-# load data into db
-def load_to_postgres(df: pd.DataFrame, conn, table_name: str):
+
+# load data into BigQuery
+def load_to_bigquery(df: pd.DataFrame, client: bigquery.Client, dataset: str, table: str):
     try:
-        df.to_sql(table_name, conn, if_exists="replace", index=False)
-        logging.info(f"Successfully loaded {len(df)} rows into table '{table_name}'.")
+        table_id = f"{BQ_PROJECT}.{dataset}.{table}"
+        df.to_gbq(table_id, project_id=BQ_PROJECT, if_exists="replace")
+        logging.info(f"Successfully loaded {len(df)} rows into BigQuery table '{table_id}'.")
     except Exception as e:
-        logging.error(f"Error loading data to Postgres: {e}")
+        logging.error(f"Error loading data to BigQuery: {e}")
         sys.exit(1)
 
 
 
 def main():
-    conn = get_db_connection()
+    client = get_bq_client()
     df = load_csv_data(CSV_PATH)
     cleaned_df = clean_data(df)
-    load_to_postgres(cleaned_df, conn, TABLE_NAME)
-    conn.close()
+    load_to_bigquery(cleaned_df, client, BQ_DATASET, BQ_STG_TABLE)
+
     logging.info("Database connection closed. Process completed successfully.")
 
 

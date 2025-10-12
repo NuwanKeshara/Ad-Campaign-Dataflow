@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: campaign_metrics_view
+    description: "Aggregated metrics for ad campaigns"
+    columns:
+      - name: campaign_id
+        description: "ID associated with each ad campaign of XYZ company"
+
+      - name: fb_campaign_id
+        description: "ID associated with how Facebook tracks each campaign"
+
+      - name: age
+        description: "Age group of the person to whom the ad is shown"
+
+      - name: gender
+        description: "Gender of the person to whom the ad is shown"
+
+      - name: interest
+        description: "Code specifying the category of the person’s interest"
+
+      - name: total_impressions
+        description: "Number of times the ad was shown"
+
+      - name: total_clicks
+        description: "Number of clicks on that ad"
+
+      - name: total_spent
+        description: "Amount paid by company xyz to Facebook"
+
+      - name: total_conversion
+        description: "Total number of people who enquired about the product after seeing the ad"
+
+      - name: approved_conversion
+        description: "Total number of people who bought the product after seeing the ad"
+
+      - name: click_rate
+        description: "Ratio of total clicks to total impressions"
+
+      - name: spent_rate
+        description: "Ratio of total amount spent to total clicks"
+
+      - name: reach
+        description: "Ratio of total clicks to total impressions"  
