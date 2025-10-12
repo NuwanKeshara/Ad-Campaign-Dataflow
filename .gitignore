@@ -5,3 +5,4 @@ config/*
 plugins/*
 keys/*
 scripts/test_biquery_connection.py
+dags/__pycache__
