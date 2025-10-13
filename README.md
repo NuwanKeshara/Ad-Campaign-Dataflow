@@ -10,4 +10,18 @@ Tech Stack: Python, SQL, DBT, Airflow, GCP BiqQuery
 ## Report
 ![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Title.png?raw=true)
 ![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Content.png?raw=true)
+![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Page1.png?raw=true)
+![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Page2.png?raw=true)
+![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Page3.png?raw=true)
+![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Page4.png?raw=true)
+![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Page5.png?raw=true)
+![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Page6.png?raw=true)
+![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Page7.png?raw=true)
+![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Page8.png?raw=true)
+![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Page9.png?raw=true)
+![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Page10.png?raw=true)
+![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Page11.png?raw=true)
+![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Page12.png?raw=true)
+![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Page13.png?raw=true)
+![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Page14.png?raw=true)
 
