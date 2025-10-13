@@ -9,3 +9,5 @@ Tech Stack: Python, SQL, DBT, Airflow, GCP BiqQuery
 
 ## Report
 ![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Title.png?raw=true)
+![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Content.png?raw=true)
+
