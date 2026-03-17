@@ -1,4 +1,4 @@
-# Ad-Campaign-Dataflow
+<!--# Ad-Campaign-Dataflow
 
 This project is designed to streamline the process of loading, cleaning, and transforming ad campaign data from a CSV file into GCP BigQuery database. It automates the data ingestion pipeline ensuring the data is cleaned and ready for analysis or further processing.
 
@@ -23,5 +23,5 @@ Tech Stack: Python, SQL, DBT, Airflow, GCP BiqQuery
 ![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Page11.png?raw=true)
 ![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Page12.png?raw=true)
 ![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Page13.png?raw=true)
-![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Page14.png?raw=true)
+![alt text](https://github.com/NuwanKeshara/Ad-Campaign-Dataflow/blob/main/report/Page14.png?raw=true)-->
 
